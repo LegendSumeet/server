@@ -41,8 +41,18 @@ const verifyTokenAndAdmin = (req, res, next) => {
   });
 };
 
+const verifyTokenAndmentor = (req, res, next) => {
+  verifyToken(req, res, async () => {
+    if (req.user.isMentor) {
+      next();
+    } else {
+      res.status(403).json("You are not allowed to do that");
+    }
+  });
+};
 
 
 
 
-module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin };
+
+module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin,verifyTokenAndmentor};
