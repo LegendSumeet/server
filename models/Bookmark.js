@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Bookmark = new mongoose.Schema({
-    Mentot: { type: String, required: true },
+    salary: { type: String, required: true },
     UserId: {
         type: String, required: true
     },
@@ -11,3 +11,5 @@ const Bookmark = new mongoose.Schema({
     companyname: { type: String, required: true },
 
 }, { timestamps: true });
+
+module.exports = mongoose.model("Bookmark", Bookmark);

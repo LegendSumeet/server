@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
+const MentorRoutes = require("./routes/mentor");
+const BookmarkRoutes = require("./routes/bookmark");
 
 
 dotenv.config();
@@ -12,7 +14,10 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URL).then(() => console.log('DB Connected!')).catch((err) => console.log(err))
 app.use(express.json());
 app.use("/api/", authRoute);
-app.use("/api/users",userRoute)
+app.use("/api/users",userRoute);
+app.use("/api/mentor",MentorRoutes);
+app.use("/api/bookmark",BookmarkRoutes);
+
 
 
 
