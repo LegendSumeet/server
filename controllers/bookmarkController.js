@@ -2,10 +2,19 @@ const Bookmark = require('../models/Bookmark');
 
 module.exports = {
     createBookmark: async (req, res) => {
-        const newBookmark = new Bookmark(req.body);
+
+        const MentorId = req.body.MentorId;
         try {
+            const Mentor = await Mentor.findById(MentorId);
+            if (!Mentor) {
+                return res.status(404).json("Mentor not found");
+            }
+            const newBookmark = new Bookmark({
+                mentor: MentorId, userId: req.user.id
+            });
             await newBookmark.save();
-            res.status(201).json("Bookmark created");
+            const { password, ...others } = newBookmark._doc;
+            res.status(201).json(others);
         } catch (err) {
             res.status(500).json(err);
         }
