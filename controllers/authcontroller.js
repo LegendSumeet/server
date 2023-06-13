@@ -40,7 +40,7 @@ module.exports = {
 
 
 
-            res.status(200).json(others);
+            res.status(200).json(others,userToken);
 
         } catch (error) {
             res.status(500)
