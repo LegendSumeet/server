@@ -16,7 +16,7 @@ module.exports = {
       const { password, __v, createdAt, ...others } = this.updateUser._doc;
       res.status(200).json({ ...others })
     } catch (error) {
-
+        res.status(500).json(error)
     }
   }
 }
