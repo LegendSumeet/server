@@ -26,7 +26,7 @@ const verifyTokenAndAuthorization = async (req, res, next) => {
 
     }
     else {
-      res.status(403).json("your are not allwoed")
+      res.status(403).json("your are not allwoed o do this")
     }
   });
 };
