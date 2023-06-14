@@ -9,6 +9,7 @@ module.exports = {
             lastname: req.body.lastname,
             email: req.body.email,
             phonenumber: req.body.phonenumber,
+            location: req.body.location,
             password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
         });
 
