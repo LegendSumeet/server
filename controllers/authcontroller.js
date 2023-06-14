@@ -3,24 +3,31 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken")
 
 module.exports = {
-    createuser: async (req, res) => {
-        const newUser = new User({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            phonenumber: req.body.phonenumber,
-            location: req.body.location,
-            password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
-        });
+  createuser: async (req, res) => {
+      const newUser = new User({
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          email: req.body.email,
+          phonenumber: req.body.phonenumber,
+          location: req.body.location,
+          password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
+      });
 
-        try {
-            const savedUser = await newUser.save();
+      try {
+          const existingUser = await User.findOne({ email: newUser.email });
 
-            res.status(201).json(savedUser)
-        } catch (error) {
-            res.status(500).json(error);
-        }
-    },
+          if (existingUser) {
+              return res.status(409).json("Email already exists");
+          }
+
+          const savedUser = await newUser.save();
+
+          res.status(201).json(savedUser);
+      } catch (error) {
+          res.status(500).json("An error occurred");
+      }
+  },
+
 
     loginUser: async (req, res) => {
         try {
