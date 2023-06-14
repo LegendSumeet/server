@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const { Router } = require("express");
 const userController = require("../controllers/userController");
-const { verifyTokenAndAuthorization ,verifyTokenAndAdmin} = require("../middleware/verifyToken");
+const { verifyTokenAndAuthorization ,verifyTokenAndAdmin, verifyToken} = require("../middleware/verifyToken");
 
 
 
-router.put("/", verifyTokenAndAuthorization, userController.updateUser);
+router.put("/", verifyToken, userController.updateUser);
 
-router.delete("/", verifyTokenAndAuthorization, userController.deleteUser);
+router.delete("/", verifyToken, userController.deleteUser);
 
-router.get("/", verifyTokenAndAuthorization,userController.getUser);
+router.get("/", verifyToken,userController.getUser);
 
 
 
