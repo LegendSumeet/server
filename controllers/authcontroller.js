@@ -4,29 +4,41 @@ const jwt = require("jsonwebtoken")
 
 module.exports = {
   createuser: async (req, res) => {
-      const newUser = new User({
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          email: req.body.email,
-          phonenumber: req.body.phonenumber,
-          location: req.body.location,
-          password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
-      });
+    const newUser = new User({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      phonenumber: req.body.phonenumber,
+      location: req.body.location,
+      password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
+    });
 
-      try {
-          const existingUser = await User.findOne({ email: newUser.email });
+    try {
+      const existingEmailUser = await User.findOne({ email: newUser.email });
+      const existingPhoneUser = await User.findOne({ phonenumber: newUser.phonenumber });
 
-          if (existingUser) {
-              return res.status(409).json("Email already exists");
-          }
-
-          const savedUser = await newUser.save();
-
-          res.status(201).json(savedUser);
-      } catch (error) {
-          res.status(500).json("An error occurred");
+      if (existingEmailUser) {
+        return res.status(409).json("Email already exists");
       }
+
+      if (existingPhoneUser) {
+        return res.status(409).json("Phone number already exists");
+      }
+
+      const savedUser = await newUser.save();
+      res.status(201).json(savedUser);
+    } catch (error) {
+      console.error("Error occurred during user creation:", error);
+      res.status(500).json("Error occurred during user creation");
+    }
   },
+
+
+
+
+
+
+
 
 
     loginUser: async (req, res) => {

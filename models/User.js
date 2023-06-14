@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  firstname: { type: String, required: true },
-  lastname: { type: String, required: true },
+  firstname: { type: String, required: true, unique: false },
+  lastname: { type: String, required: true, unique: false },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phonenumber: { type: Number, required: true },
+  phonenumber: { type: Number, required: true, unique: true },
   location: { type: String },
   isAdmin: { type: Boolean, default: false },
   isMentor: { type: Boolean, default: false },
@@ -15,3 +15,4 @@ const UserSchema = new mongoose.Schema({
 );
 
 module.exports = mongoose.model("User", UserSchema);
+
