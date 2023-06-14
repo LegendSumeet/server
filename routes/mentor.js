@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const mentorcontroller = require("../controllers/mentorcontroller");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor} = require("../middleware/verifyToken");
 
@@ -8,8 +7,6 @@ const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor} =
 router.post("/", verifyTokenAndmentor, mentorcontroller.creatementor);
 
 router.put("/:id", verifyTokenAndmentor, mentorcontroller.updatementor);
-
-
 
 router.delete("/:id", verifyTokenAndAdmin, mentorcontroller.deletementor);
 

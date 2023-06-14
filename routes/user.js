@@ -5,11 +5,11 @@ const { verifyTokenAndAuthorization ,verifyTokenAndAdmin} = require("../middlewa
 
 
 
-router.put("/:id", verifyTokenAndAuthorization, userController.updateUser);
+router.put("/", verifyTokenAndAuthorization, userController.updateUser);
 
-router.delete("/:id", verifyTokenAndAuthorization, userController.deleteUser);
+router.delete("/", verifyTokenAndAuthorization, userController.deleteUser);
 
-router.get("/:id", verifyTokenAndAuthorization,userController.getUser);
+router.get("/", verifyTokenAndAuthorization,userController.getUser);
 
 router.get("/", verifyTokenAndAdmin,userController.getAllUser);
 
