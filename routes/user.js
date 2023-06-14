@@ -11,8 +11,6 @@ router.delete("/", verifyTokenAndAuthorization, userController.deleteUser);
 
 router.get("/", verifyTokenAndAuthorization,userController.getUser);
 
-router.get("/", verifyTokenAndAdmin,userController.getAllUser);
-
 
 
 
