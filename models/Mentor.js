@@ -79,7 +79,9 @@ const mentorSchema = new mongoose.Schema({
     type: String,
   },
   ratings: [ratingSchema],
-});
+}, { timestamps: true }
+
+);
 
 const Mentor = mongoose.model("mentor", mentorSchema);
 
