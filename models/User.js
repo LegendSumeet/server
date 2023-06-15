@@ -37,15 +37,6 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  fav: [
-    {
-      mentor: mentorSchema,
-      count: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
 }, { timestamps: true }
 );
 
