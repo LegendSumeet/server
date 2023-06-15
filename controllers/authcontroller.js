@@ -61,7 +61,7 @@ module.exports = {
           const { password: _, __v, createdAt, ...others } = user._doc;
       
           const userToken = jwt.sign(
-            { id: user._id, isAdmin: user.isAdmin, isMentor: user.isMentor },
+            { id: user._id, isMentor: user.isMentor },
             process.env.SECRET_KEY,
             { expiresIn: "21d" }
           );
