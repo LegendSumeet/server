@@ -13,7 +13,7 @@ const mentorSchema = new mongoose.Schema({
     trim: true,
   },
   phonenumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   email: {
@@ -32,10 +32,6 @@ const mentorSchema = new mongoose.Schema({
   password: {
     required: true,
     type: String,
-  },
-  phonenumber:{
-    type: Number,
-    required: true,
   },
   isMentor: {
     type: Boolean,
@@ -74,13 +70,13 @@ const mentorSchema = new mongoose.Schema({
     required: true,
   },
   sessionprice: {
-    type: Number,
+    type: String,
   },
   sessiontime: {
     type: String,
   },
   amount: {
-    type: Number,
+    type: String,
   },
   ratings: [ratingSchema],
 });
