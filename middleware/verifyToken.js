@@ -50,9 +50,4 @@ const verifyTokenAndmentor = (req, res, next) => {
     }
   });
 };
-
-
-
-
-
 module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin,verifyTokenAndmentor};
