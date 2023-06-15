@@ -33,6 +33,10 @@ const mentorSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  phonenumber:{
+    type: Number,
+    required: true,
+  },
   isMentor: {
     type: Boolean,
     default: true,
