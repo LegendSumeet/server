@@ -33,6 +33,12 @@ const userSchema = mongoose.Schema({
     required: true,
     type: String,
   },
+  location: {
+    type: String,
+  },
+  Profile:{
+    type: String,
+  },
   isMentor: {
     type: Boolean,
     default: false,
