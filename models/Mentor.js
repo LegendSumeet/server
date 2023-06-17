@@ -1,41 +1,33 @@
 const mongoose = require("mongoose");
-const ratingSchema = require("./rating");
 
 const mentorSchema = new mongoose.Schema({
   isMentor: {
     type: Boolean,
     default: true,
   },
-  name: {
-    type: String,
-   
-    
-  },
-  profile: {
-    type: String,
-  
-  },
-  profile1: {
-    type: String,
-  },
-  profile2: {
-    type: String,
-  },
-  companyname: {
-    type: String,
-   
-  },
-  education: {
-    type: String,
-  
-  },
-  country: {
-    type: String,
-   
-  },
   category: {
     type: String,
-  
+  },
+  location: {
+    type: String,
+  },
+  perHourCharges: {
+    type: String,
+  },
+  Availability: {
+    type: String,
+  },
+  CurrentWorking: {
+    type: String,
+  },
+  Linkedin: {
+    type: String,
+  },
+  OtherProfile: {
+    type: String,
+  },
+  Description: {
+    type: String,
   },
   sessionprice: {
     type: String,
@@ -43,11 +35,12 @@ const mentorSchema = new mongoose.Schema({
   sessiontime: {
     type: String,
   },
-  ratings: [ratingSchema],
+  ratings: {
+    type: String,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  
   },
   firstName: {
     type: String,
