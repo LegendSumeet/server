@@ -1,50 +1,28 @@
-const mongoose = require("mongoose");
-const { mentor, mentorSchema } = require("./Mentor");
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const userSchema = mongoose.Schema({
-  firstname: {
-    required: true,
+const userSchema = new Schema({
+  firstName: {
     type: String,
-    trim: true,
+
   },
-  lastname: {
-    required: true,
+  lastName: {
     type: String,
-    trim: true,
-  },
-  phonenumber: {
-    type: Number,
-    required: true,
+ 
   },
   email: {
-    required: true,
     type: String,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        const re =
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return value.match(re);
-      },
-      message: "Please enter a valid email address",
-    },
+ 
+  },
+  mobile: {
+    type: String,
+
   },
   password: {
-    required: true,
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  Profile:{
-    type: String,
-  },
-  isMentor: {
-    type: Boolean,
-    default: false,
-  },
-}, { timestamps: true }
-);
+    type: String
+  }
+});
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
+
 module.exports = User;

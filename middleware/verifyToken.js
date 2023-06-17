@@ -1,5 +1,6 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 
 const verifyToken = (req, res, next) => {
@@ -42,7 +43,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
 };
 
 const verifyTokenAndmentor = (req, res, next) => {
-  verifyToken(req, res, async () => {
+  verifyTokenAndAuthorization(req, res, async () => {
     if (req.user.isMentor) {
       next();
     } else {
