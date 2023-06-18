@@ -2,16 +2,16 @@ const { Mentor } = require('../models/Mentor');
 
 const registerMentor = async (req, res) => {
   const {
-    name,
-    profile,
-    profile1,
-    profile2,
-    companyname,
-    education,
-    country,
+    isMentor,
     category,
-    sessionprice,
-    sessiontime,
+    location,
+    perHourCharges,
+    availability,
+    currentWorkingat,
+    linkedin,
+    companyName,
+    otherProfile,
+    description,
     ratings,
     userId,
     firstName,
@@ -22,16 +22,16 @@ const registerMentor = async (req, res) => {
 
   // Create a new Mentor instance
   const newMentor = new Mentor({
-    name,
-    profile,
-    profile1,
-    profile2,
-    companyname,
-    education,
-    country,
+    isMentor,
     category,
-    sessionprice,
-    sessiontime,
+    location,
+    perHourCharges,
+    availability,
+    currentWorkingat,
+    linkedin,
+    companyName,
+    otherProfile,
+    description,
     ratings,
     userId,
     firstName,
@@ -52,6 +52,7 @@ const registerMentor = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 // Get all mentors
 const getAllMentors = async (req, res) => {
   try {
@@ -64,7 +65,7 @@ const getAllMentors = async (req, res) => {
 
 // Update a mentor
 const updateMentor = async (req, res) => {
-  const { mentorId } = req.userId;
+  const { mentorId } = req.params;
   const updateData = req.body;
 
   try {
@@ -75,11 +76,8 @@ const updateMentor = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
   registerMentor,
   getAllMentors,
   updateMentor,
 };
-

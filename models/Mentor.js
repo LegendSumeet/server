@@ -14,29 +14,24 @@ const mentorSchema = new mongoose.Schema({
   perHourCharges: {
     type: String,
   },
-  Availability: {
+  availability: {
     type: String,
   },
-  CurrentWorking: {
+  currentWorkingat: {
     type: String,
   },
-  Linkedin: {
+  linkedin: {
     type: String,
   },
-  OtherProfile: {
+  otherProfile: {
     type: String,
   },
-  Description: {
-    type: String,
-  },
-  sessionprice: {
-    type: String,
-  },
-  sessiontime: {
+  description: {
     type: String,
   },
   ratings: {
-    type: String,
+    type: Number,
+    default: 0,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
