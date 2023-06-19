@@ -20,6 +20,17 @@ const verifyToken = (req, res, next) => {
 
 };
 
+const verifyTokenAndAuthorization = async (req, res, next) => {
+  verifyToken(req, res, async () => {
+    if (req.user.id === req.params.id) {
+      next();
+
+    }
+    else {
+      res.status(403).json("your are not allwoed o do this")
+    }
+  });
+};
 
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, async () => {
