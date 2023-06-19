@@ -29,6 +29,7 @@ const mentorSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  
   ratings: {
     type: Number,
     default: 0,

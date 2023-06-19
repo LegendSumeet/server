@@ -76,8 +76,20 @@ const updateMentor = async (req, res) => {
   }
 };
 
+const getmentor = async (req, res) => {
+  try{
+    const mentor = await Mentor.findById(req.params.id);
+    res.status(200).json(mentor);
+  }catch(error){
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
+
 module.exports = {
   registerMentor,
+  getmentor,
   getAllMentors,
   updateMentor,
 };

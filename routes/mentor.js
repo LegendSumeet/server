@@ -9,6 +9,7 @@ router.post("/creatementor", verifyTokenAndAuthorization, mentorcontroller.regis
 router.get("/getall", mentorcontroller.getAllMentors);
 
 router.put("/:id", verifyToken, mentorcontroller.updateMentor);
+router.get("/:id", mentorcontroller.getmentor);
 /*
 router.delete("/:id", verifyTokenAndAdmin, mentorcontroller.deletementor);
 
