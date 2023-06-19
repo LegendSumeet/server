@@ -11,6 +11,9 @@ const mentorSchema = new mongoose.Schema({
   location: {
     type: String,
   },
+  education: {
+    type: String,
+  },
   perHourCharges: {
     type: String,
   },
@@ -26,10 +29,20 @@ const mentorSchema = new mongoose.Schema({
   otherProfile: {
     type: String,
   },
+  modeofcommunication: {
+    type: String,
+  },
   description: {
     type: String,
   },
-  
+  amountEarned: {
+    type: Number,
+    default: 0,
+  },
+  totalSessions: {
+    type: Number,
+    default: 0,
+  },
   ratings: {
     type: Number,
     default: 0,
