@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const ratingSchema = require("./rating");
-const { requestSchema, notificationSchema } = require("./request");
+
 
 const mentorSchema = new mongoose.Schema({
   isMentor: {
@@ -51,9 +50,6 @@ const mentorSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  reviews: [ratingSchema], 
-  requests: [requestSchema],
-  notifications: [notificationSchema],
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

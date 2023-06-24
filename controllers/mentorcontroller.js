@@ -1,4 +1,5 @@
 const { Mentor } = require('../models/Mentor');
+const User = require('../models/User');
 
 const registerMentor = async (req, res) => {
   const {
@@ -16,40 +17,40 @@ const registerMentor = async (req, res) => {
     modeofcommunication,
     otherProfile,
     description,
-    reviews,
     userId,
-    firstName,
-    lastName,
-    email,
-    mobile,
   } = req.body;
-  const newMentor = new Mentor({
-    isMentor,
-    category,
-    location,
-    education,
-    perHourCharges,
-    availability,
-    currentWorkingat,
-    linkedin,
-    instgram,
-    facebook,
-    companyName,
-    otherProfile,
-    modeofcommunication,
-    description,
-    reviews,
-    userId,
-    firstName,
-    lastName,
-    email,
-    mobile,
-  });
 
   try {
+ 
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const newMentor = new Mentor({
+      isMentor,
+      category,
+      location,
+      education,
+      perHourCharges,
+      availability,
+      currentWorkingat,
+      linkedin,
+      instgram,
+      facebook,
+      companyName,
+      otherProfile,
+      modeofcommunication,
+      description,
+      userId,
+      firstName: user.firstName,  
+      lastName: user.lastName,   
+      email: user.email,          
+      mobile: user.mobile,        
+    });
 
     const savedMentor = await newMentor.save();
-
 
     const { __v, createdAt, updatedAt, ...mentorInfo } = savedMentor._doc;
 
@@ -58,6 +59,7 @@ const registerMentor = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 
 
 const getAllMentors = async (req, res) => {
