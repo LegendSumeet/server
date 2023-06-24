@@ -44,6 +44,18 @@ const getTimeRequestsByMentor = async (req, res) => {
   }
 };
 
+const getTimeRequestsByUser = async (req, res) => {
+  try {
+    const { seekerId } = req.params;
+
+    const timeRequests = await TimeRequest.find({ seekerId });
+
+    res.status(200).json(timeRequests);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const cancelTimeRequest = async (req, res) => {
   try {
     const { mentorId, requestId } = req.params;
@@ -98,6 +110,7 @@ const acceptTimeRequest = async (req, res) => {
 module.exports = {
     createRequest,
     getTimeRequestsByMentor,
+    getTimeRequestsByUser,
     cancelTimeRequest,
     acceptTimeRequest
 };
