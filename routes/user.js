@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Router } = require("express");
 const userController = require("../controllers/userController");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin, verifyToken} = require("../middleware/verifyToken");
-const { getTimeRequestsByUser } = require("../controllers/request");
+const { getTimeRequestsByUser } = require("../controllers/requestController");
 
 
 

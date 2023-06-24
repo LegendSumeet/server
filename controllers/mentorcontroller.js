@@ -59,9 +59,6 @@ const registerMentor = async (req, res) => {
     res.status(500).json(err);
   }
 };
-
-
-
 const getAllMentors = async (req, res) => {
   try {
     const mentors = await Mentor.find();
