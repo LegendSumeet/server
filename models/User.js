@@ -21,6 +21,35 @@ const userSchema = new Schema({
   password: {
     type: String
   },
+  requests: [
+    {
+      mentorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Mentor',
+      },
+      status: {
+        type: String,
+        enum: ['pending', 'accepted', 'rejected'],
+        default: 'pending',
+      },
+      additionalDetails: {
+        type: String,
+      },
+    },
+  ],
+  
+  notifications: [
+    {
+      message: {
+        type: String,
+      },
+      timestamp: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  
 },{timestamps: true},
 );
 

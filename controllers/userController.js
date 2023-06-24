@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const { all } = require("../routes/user");
+const { Mentor } = require("../models/Mentor");
 
 module.exports = {
   updateUser: async (req, res) => {
@@ -48,9 +49,11 @@ getAllUser: async (req, res) => {
   }catch (error) {
     res.status(500).json(error);
 }
-},
-
-
-  
+},  
 
 };
+
+
+
+
+
