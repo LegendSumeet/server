@@ -129,23 +129,16 @@ const createReview = async (req, res) => {
     }
 
 };
-
-filtermentor = async (req, res) => {
+const getMentorsByCategory = async (req, res) => {
   try {
-    const { category } = req.query;
+    const { category } = req.params;
 
-    let mentors;
-    if (category) {
-      // Filter mentors by category if category is provided
-      mentors = await Mentor.find({ category });
-    } else {
-      // Fetch all mentors if no category is provided
-      mentors = await Mentor.find();
-    }
+    // Fetch mentors from the database based on the category
+    const mentors = await Mentor.find({ category });
 
     res.status(200).json(mentors);
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -155,5 +148,5 @@ module.exports = {
   getAllMentors,
   updateMentor,
   createReview,
-  filtermentor
+  getMentorsByCategory
 };

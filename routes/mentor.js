@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const mentorcontroller = require("../controllers/mentorcontroller");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, verifyToken} = require("../middleware/verifyToken");
-const { createRequest, getTimeRequestsByMentor ,cancelTimeRequest,acceptTimeRequest,getTimeRequestsByUser} = require('../controllers/requestController');
+const { createRequest, getTimeRequestsByMentor ,cancelTimeRequest,acceptTimeRequest,get} = require('../controllers/requestController');
 
 
 
@@ -9,6 +9,8 @@ router.post("/creatementor", mentorcontroller.registerMentor);
 router.get("/getall", mentorcontroller.getAllMentors);
 router.put("/:id", verifyToken, mentorcontroller.updateMentor);
 router.get("/:id", mentorcontroller.getmentor);
+router.get("/filter/:category", mentorcontroller.getMentorsByCategory);
+
 
 
 
