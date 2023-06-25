@@ -23,6 +23,9 @@ const timeRequestSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true
+  },
+  mode:{
+    type: String,
   }
 }, { timestamps: true });
 
