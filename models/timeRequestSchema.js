@@ -26,6 +26,7 @@ const timeRequestSchema = new mongoose.Schema({
   },
   mode:{
     type: String,
+    required: true
   }
 }, { timestamps: true });
 

@@ -5,7 +5,7 @@ const TimeRequest = require('../models/timeRequestSchema');
 
 const createRequest = async (req, res) => {
   try {
-    const { timeInMinutes, mentorId, seekerId, price } = req.body;
+    const { timeInMinutes, mentorId, seekerId, price ,mode} = req.body;
 
     // Check if the mentor and seeker exist
     const mentor = await Mentor.findById(mentorId);
@@ -21,6 +21,7 @@ const createRequest = async (req, res) => {
       mentorId,
       seekerId,
       price,
+      mode,
     });
 
     // Save the request
