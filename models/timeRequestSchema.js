@@ -1,4 +1,6 @@
+const { Double } = require('bson');
 const mongoose = require('mongoose');
+const { double } = require('webidl-conversions');
 
 const timeRequestSchema = new mongoose.Schema({
   timeInMinutes: {
