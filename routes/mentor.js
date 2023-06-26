@@ -2,6 +2,7 @@ const router = require("express").Router();
 const mentorcontroller = require("../controllers/mentorcontroller");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, verifyToken} = require("../middleware/verifyToken");
 const { createRequest, getTimeRequestsByMentor ,cancelTimeRequest,acceptTimeRequest,get} = require('../controllers/requestController');
+const { createRating,getMentorReviews } = require('../controllers/reviewcontroller');
 
 
 
@@ -20,16 +21,10 @@ router.delete('/:mentorId/time-requests/:requestId/cancel', cancelTimeRequest);
 router.put('/:mentorId/time-requests/:requestId/accept', acceptTimeRequest);
 
 
-/*
-router.delete("/:id", verifyTokenAndAdmin, mentorcontroller.deletementor);
-
-router.get("/:id", mentorcontroller.getmentor);
 
 
-
-router.get("/search/:key", mentorcontroller.searchmentor)
-
-*/
+router.post('/review', createRating);
+router.get('/:mentorId/reviews', getMentorReviews);
 
 
 module.exports = router;

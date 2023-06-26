@@ -18,6 +18,9 @@ const ratingSchema = mongoose.Schema({
         required: true,
     },
   
-});
+}
+, { timestamps: true });
 
-module.exports = ratingSchema;
+const Review = mongoose.model("Review", ratingSchema);
+
+module.exports = { Review, ratingSchema };
