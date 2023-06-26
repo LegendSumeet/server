@@ -3,6 +3,7 @@ const mentorcontroller = require("../controllers/mentorcontroller");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, verifyToken} = require("../middleware/verifyToken");
 const { createRequest, getTimeRequestsByMentor ,cancelTimeRequest,acceptTimeRequest,get} = require('../controllers/requestController');
 const { createRating,getMentorReviews } = require('../controllers/reviewcontroller');
+const {  createCategory,getAllCategories,} = require('../controllers/categorycontroller');
 
 
 
@@ -25,6 +26,10 @@ router.put('/:mentorId/time-requests/:requestId/accept', acceptTimeRequest);
 
 router.post('/review', createRating);
 router.get('/:mentorId/reviews', getMentorReviews);
+
+
+router.post('/Createcategory', createCategory);
+router.get('/getallcategories', getAllCategories);
 
 
 module.exports = router;
