@@ -63,6 +63,9 @@ const mentorSchema = new mongoose.Schema({
   email: {
     type: String,
   },
+  password: {
+    type: String,
+  },
   mobile: {
     type: String,
   },

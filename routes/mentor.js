@@ -4,8 +4,9 @@ const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, v
 const { createRequest, getTimeRequestsByMentor ,cancelTimeRequest,acceptTimeRequest,get} = require('../controllers/requestController');
 const { createRating,getMentorReviews } = require('../controllers/reviewcontroller');
 const {  createCategory,getAllCategories,} = require('../controllers/categorycontroller');
+const { mentorlogin } = require("../controllers/authcontroller");
 
-
+router.post("/login", mentorlogin);
 
 router.post("/creatementor", mentorcontroller.registerMentor);
 router.get("/getall", mentorcontroller.getAllMentors);
