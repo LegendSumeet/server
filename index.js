@@ -9,6 +9,12 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL).then(() => console.log('DB Connected!')).catch((err) => console.log(err))
 app.use(express.json());
+
+app.get('/', function(req, res){
+   res.send("<h1>MYCLAN API IS RUNNING</h1><br>");
+});
+
+
 app.use("/api/", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/mentor", MentorRoutes);

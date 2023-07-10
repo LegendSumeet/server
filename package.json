@@ -9,6 +9,10 @@
   "engines": {
     "node": ">=14.20.0"
   },
+  "scripts": {
+    "start": "nodemon --watch src server/index.js",
+    "build": "tsc"
+},
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bson": "^5.4.0",
