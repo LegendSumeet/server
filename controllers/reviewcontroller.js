@@ -55,7 +55,7 @@ const getMentorReviews = async (req, res) => {
 
       const ratings = await Review.find({ mentorId });
   
-      res.status(200).json({ mentor, ratings });
+      res.status(200).json({ ratings });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
