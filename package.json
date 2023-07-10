@@ -6,6 +6,9 @@
   "repository": "https://github.com/LegendSumeet/server",
   "author": "Sumeet Vishwakarma <85386116+LegendSumeet@users.noreply.github.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=14.20.0"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bson": "^5.4.0",
