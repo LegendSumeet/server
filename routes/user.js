@@ -5,13 +5,11 @@ const { verifyTokenAndAuthorization ,verifyTokenAndAdmin, verifyToken} = require
 const { getTimeRequestsByUser } = require("../controllers/requestController");
 
 
-
+//auth
 router.put("/", verifyToken, userController.updateUser);
-
 router.delete("/", verifyToken, userController.deleteUser);
-
 router.get("/", verifyToken,userController.getUser);
-
+//time request
 router.get('/:seekerId/time-requests',getTimeRequestsByUser );
 
 
