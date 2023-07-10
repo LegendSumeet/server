@@ -1,6 +1,6 @@
 {
   "name": "myclanapi",
-  "version": "1.0.0",
+  "version": "1.2.00",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -171,6 +171,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Sumeet Vishwakarma <85386116+LegendSumeet@users.noreply.github.com>",
+  "license": "ISC",
+  "repository": "https://github.com/LegendSumeet/server"
 }
