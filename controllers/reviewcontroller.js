@@ -41,21 +41,19 @@ const createRating = async (req, res) => {
     }
   };
   
-const getMentorReviews = async (req, res) => {
+  const getMentorReviews = async (req, res) => {
     try {
       const { mentorId } = req.params;
-  
-
+    
       const mentor = await Mentor.findById(mentorId);
-  
+    
       if (!mentor) {
         return res.status(404).json({ error: 'Mentor not found' });
       }
-  
-
+    
       const ratings = await Review.find({ mentorId });
-  
-      res.status(200).json({ ratings });
+    
+      res.status(200).json(ratings); // Return ratings directly without the "ratings" heading
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
