@@ -19,7 +19,7 @@ const timeRequestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'accepted', 'rejected', 'inprogress'],
+    enum: ['pending', 'accepted', 'rejected', 'inprogress','completed'],
     default: 'pending'
   },
   price: {
