@@ -94,34 +94,33 @@ const getmentor = async (req, res) => {
 const createReview = async (req, res) => {
 
   
-  // POST /mentors/:id/reviews
+  
 
     try {
       const { id } = req.params;
       const { userId, review, rating } = req.body;
   
-      // Find the mentor by id
+     
       const mentor = await Mentor.findById(id);
   
       if (!mentor) {
         return res.status(404).json({ error: 'Mentor not found' });
       }
   
-      // Check if the user has already reviewed the mentor
+     
       const existingReviewIndex = mentor.reviews.findIndex(
         (review) => review.userId === userId
       );
   
       if (existingReviewIndex !== -1) {
-        // Update the existing review
+      
         mentor.reviews[existingReviewIndex].review = review;
         mentor.reviews[existingReviewIndex].rating = rating;
       } else {
-        // Create a new review
+      
         mentor.reviews.push({ userId, review, rating });
       }
-  
-      // Save the updated mentor with the new review
+
       const updatedMentor = await mentor.save();
   
       res.status(200).json(updatedMentor);
@@ -134,7 +133,7 @@ const getMentorsByCategory = async (req, res) => {
   try {
     const { category } = req.params;
 
-    // Fetch mentors from the database based on the category
+   
     const mentors = await Mentor.find({ category });
 
     res.status(200).json(mentors);
