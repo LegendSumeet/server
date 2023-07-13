@@ -60,17 +60,17 @@ const createRating = async (req, res) => {
   };
 
 
-  const getallreviews = async(req,res)=>{
-    try{
+  const getAllReviews = async (req, res) => {
+    try {
       const reviews = await Review.find();
       res.status(200).json(reviews);
-    }catch(error){
-      res.status(500).json({error:error.message});
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  }
+  };
 module.exports = {
     createRating,
     getMentorReviews,
-    getallreviews,
+    getAllReviews,
 };
 
