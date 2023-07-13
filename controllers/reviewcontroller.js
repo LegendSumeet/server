@@ -58,8 +58,19 @@ const createRating = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+
+  const getallreviews = async(req,res)=>{
+    try{
+      const reviews = await Review.find();
+      res.status(200).json(reviews);
+    }catch(error){
+      res.status(500).json({error:error.message});
+    }
+  }
 module.exports = {
     createRating,
     getMentorReviews,
+    getallreviews,
 };
 
