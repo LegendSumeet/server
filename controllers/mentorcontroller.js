@@ -18,6 +18,7 @@ const registerMentor = async (req, res) => {
     otherProfile,
     description,
     userId,
+    avgrating,
   } = req.body;
 
   try {
@@ -44,6 +45,7 @@ const registerMentor = async (req, res) => {
       modeofcommunication,
       description,
       userId,
+      avgrating,
       firstName: user.firstName,  
       lastName: user.lastName,   
       email: user.email,          

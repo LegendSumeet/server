@@ -50,6 +50,9 @@ const mentorSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  avgrating:{
+    type: Number,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

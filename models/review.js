@@ -24,6 +24,7 @@ const ratingSchema = new mongoose.Schema({
     avgrating: {
         type: Number,
         
+        
     },
   
 }

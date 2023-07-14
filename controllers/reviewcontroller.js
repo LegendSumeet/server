@@ -40,16 +40,20 @@ const createRating = async (req, res) => {
     const sum = ratings.reduce((total, rating) => total + rating.rating, 0);
     const avgRating = sum / ratings.length;
 
-    const ratingWithAvg = {
-      ...newRating.toObject(),
-      avgRating,
-    };
+    newRating.avgrating = avgRating;
+    await newRating.save();
 
-    res.status(201).json(ratingWithAvg);
+    const mentor = await Mentor.findById(mentorId);
+    mentor.avgrating = avgRating;
+    await mentor.save();
+
+    res.status(201).json(newRating);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 
   
