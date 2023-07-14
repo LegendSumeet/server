@@ -60,22 +60,31 @@ const createRating = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-  const getallreviewsmetnor = async (req, res) => {
+
+
+  const getAllReviews = async (req,res) => {
     try {
-      const Reviewandratings = await Review.find();
-    
-      res.status(200).json(Reviewandratings); 
+      const ratings = await Review.find();
+      res.status(200).json(ratings);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.log(error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
   };
-
-
-
+  
+  
+  
+  
 module.exports = {
     createRating,
     getMentorReviews,
-    getallreviewsmetnor
+    getAllReviews,
 
 };
+
+
+
+
+
+
 

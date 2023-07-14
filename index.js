@@ -21,11 +21,6 @@ app.use('/api/', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/mentor', MentorRoutes);
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
-
 app.listen(process.env.PORT || 5002, () =>
   console.log(`app listening on port ${process.env.PORT || 5002}!`)
 );
