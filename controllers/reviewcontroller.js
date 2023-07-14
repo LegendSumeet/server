@@ -5,43 +5,53 @@ const { Mentor } = require('../models/Mentor');
 const User = require('../models/User');
 
 const createRating = async (req, res) => {
-    try {
-      const { userId, mentorId, rating, review } = req.body;
-  
-      const mentorExists = await Mentor.findById(mentorId);
-      const userExists = await User.findById(userId);
-  
-      if (!mentorExists || !userExists) {
-        return res.status(404).json({ error: 'Mentor or user not found' });
-      }
-  
-      const existingRating = await Review.findOne({ userId, mentorId });
-      if (existingRating) {
-        return res.status(400).json({ error: 'User has already reviewed this mentor' });
-      }
-  
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-  
-      const reviewBy = `${user.firstName} ${user.lastName}`;
-  
-      const newRating = new Review({
-        userId,
-        mentorId,
-        reviewBy,
-        rating,
-        review,
-      });
-  
-      await newRating.save();
-  
-      res.status(201).json(newRating);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+  try {
+    const { userId, mentorId, rating, review } = req.body;
+
+    const mentorExists = await Mentor.findById(mentorId);
+    const userExists = await User.findById(userId);
+
+    if (!mentorExists || !userExists) {
+      return res.status(404).json({ error: 'Mentor or user not found' });
     }
-  };
+
+    const existingRating = await Review.findOne({ userId, mentorId });
+    if (existingRating) {
+      return res.status(400).json({ error: 'User has already reviewed this mentor' });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const reviewBy = `${user.firstName} ${user.lastName}`;
+
+    const newRating = new Review({
+      userId,
+      mentorId,
+      reviewBy,
+      rating,
+      review,
+    });
+    await newRating.save();
+
+    const ratings = await Review.find({ mentorId });
+    const sum = ratings.reduce((total, rating) => total + rating.rating, 0);
+    const avgRating = sum / ratings.length;
+
+    const ratingWithAvg = {
+      ...newRating.toObject(),
+      avgRating,
+    };
+
+    res.status(201).json(ratingWithAvg);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
   
   const getMentorReviews = async (req, res) => {
     try {

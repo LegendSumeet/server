@@ -21,6 +21,10 @@ const ratingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    avgrating: {
+        type: Number,
+        
+    },
   
 }
 , { timestamps: true });
