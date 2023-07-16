@@ -38,6 +38,7 @@ router.get('/getallcategories', getAllCategories);
 router.post('/createslots', slotscontroller.createSlots);
 router.get('/slots/:userID/:mentorID', slotscontroller.getSlotsByUserAndMentorId);
 router.post('/slots/confirm', slotscontroller.confirmSlot);
+router.get('/slots/available/:userID/:mentorID', slotscontroller.areMentorSlotsAvailableForUser);
 
 
 

@@ -96,8 +96,40 @@ const confirmSlot = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+
+
+
+
+const areMentorSlotsAvailableForUser = async (req, res) => {
+    try {
+      const { userID, mentorID } = req.params;
+  
+      const mentorExists = await Mentor.findById(mentorID);
+      const userExists = await User.findById(userID);
+  
+      if (!mentorExists || !userExists) {
+        return res.status(404).json({ error: 'Mentor or user not found' });
+      }
+  
+     
+      const slots = await Slot.find({ mentorID: mentorID, userID: userID });
+  
+      if (slots.length === 0) {
+        return res.status(200).json({ slotsAvailable: false});
+      }
+  
+      
+      res.status(200).json({ slotsAvailable: true });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
 module.exports = {
     createSlots,
     getSlotsByUserAndMentorId,
-    confirmSlot
+    confirmSlot,
+    areMentorSlotsAvailableForUser
+
 }
