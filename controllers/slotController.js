@@ -1,7 +1,8 @@
 const Slot = require("../models/slot");
 const { Mentor } = require("../models/Mentor");
 const User = require("../models/User");
-const cnfSlot = require("../models/confirmslot")
+const cnfSlot = require("../models/confirmslot");
+const TimeRequest = require("../models/timeRequestSchema");
 
 const createSlots = async (req, res) => {
     try {
@@ -105,17 +106,19 @@ const confirmSlot = async (req, res) => {
 
 const areMentorSlotsAvailableForUser = async (req, res) => {
     try {
-      const { userID, mentorID } = req.params;
+      const { userID, mentorID ,requestID} = req.params;
   
       const mentorExists = await Mentor.findById(mentorID);
       const userExists = await User.findById(userID);
+      const requestExits = await TimeRequest.findById(requestID);
+      
   
-      if (!mentorExists || !userExists) {
+      if (!mentorExists || !userExists || !requestExits) {
         return res.status(404).json({ error: 'Mentor or user not found' });
       }
   
      
-      const slots = await Slot.find({ mentorID: mentorID, userID: userID });
+      const slots = await Slot.find({ mentorID: mentorID, userID: userID , requestID:requestID});
   
       if (slots.length === 0) {
         return res.status(200).json({ slotsAvailable: "false"});
