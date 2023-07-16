@@ -117,11 +117,11 @@ const areMentorSlotsAvailableForUser = async (req, res) => {
       const slots = await Slot.find({ mentorID: mentorID, userID: userID });
   
       if (slots.length === 0) {
-        return res.status(200).json({ slotsAvailable: false});
+        return res.status(200).json({ slotsAvailable: "false"});
       }
   
       
-      res.status(200).json({ slotsAvailable: true });
+      res.status(200).json({ slotsAvailable: "true" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
