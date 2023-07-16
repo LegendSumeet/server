@@ -6,6 +6,7 @@ const { createRating,getMentorReviews , getAllReviews  } = require('../controlle
 const reviewsall = require('../controllers/reviewcontroller');
 const {  createCategory,getAllCategories,} = require('../controllers/categorycontroller');
 const { mentorlogin } = require("../controllers/authcontroller");
+const slotscontroller = require("../controllers/slotController");
 
 //auth
 router.post("/login", mentorlogin);
@@ -31,6 +32,13 @@ router.get('/:mentorId/reviews', getMentorReviews);
 //category
 router.post('/Createcategory', createCategory);
 router.get('/getallcategories', getAllCategories);
+
+
+//slots
+router.post('/createslots', slotscontroller.createSlots);
+router.get('/slots/:userID/:mentorID', slotscontroller.getSlotsByUserAndMentorId);
+router.post('/slots/confirm', slotscontroller.confirmSlot);
+
 
 
 module.exports = router;
