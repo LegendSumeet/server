@@ -5,7 +5,7 @@ const cnfSlot = require("../models/confirmslot")
 
 const createSlots = async (req, res) => {
     try {
-        const { mentorID, userID, slots } = req.body;
+        const { mentorID, userID, requestID ,slots } = req.body;
 
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
@@ -29,6 +29,7 @@ const createSlots = async (req, res) => {
             userID: userID,
             mentorID: mentorID,
             slots: slots,
+            requestID:requestID
         });
 
         await newSlot.save();

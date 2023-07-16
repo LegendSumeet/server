@@ -10,6 +10,10 @@ const SlotSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Mentor",
     },
+    requestID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"TimeRequest"
+    },
     slots: [
         {
             date: { type: String, required: true },
