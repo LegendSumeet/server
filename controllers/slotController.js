@@ -43,16 +43,18 @@ const createSlots = async (req, res) => {
 
 const getSlotsByUserAndMentorId = async (req, res) => {
     try {
-        const { userID, mentorID } = req.params;
+        const { userID, mentorID , requestID } = req.params;
 
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
+        const requestExits = await Slot.findById(requestID);
+
 
         if (!mentorExists || !userExists) {
             return res.status(404).json({ error: 'Mentor or user not found' });
         }
 
-        const slots = await Slot.find({ mentorID: mentorID, userID: userID });
+        const slots = await Slot.find({ mentorID: mentorID, userID: userID ,requestID:requestID });
         res.status(200).json(slots);
     } catch (error) {
         res.status(500).json({ error: error.message });
