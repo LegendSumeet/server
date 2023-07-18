@@ -50,9 +50,10 @@ const getSlotsByUserAndMentorId = async (req, res) => {
         const requestExits = await Slot.findById(requestID);
 
 
-        if (!mentorExists || !userExists) {
+        if (!mentorExists || !userExists || !requestExits) {
             return res.status(404).json({ error: 'Mentor or user not found' });
         }
+
 
         const slots = await Slot.find({ mentorID: mentorID, userID: userID ,requestID:requestID });
         res.status(200).json(slots);
