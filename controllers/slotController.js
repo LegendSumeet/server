@@ -51,7 +51,7 @@ const getSlotsByUserAndMentorId = async (req, res) => {
 
 
         if (!mentorExists || !userExists || !requestExits) {
-            return res.status(404).json({ error: 'Mentor or user not found' });
+            return res.status(404).json({ error: 'Mentor or user not found not found' });
         }
 
 
