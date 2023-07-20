@@ -52,11 +52,6 @@ const createRating = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-
-
-
-  
   const getMentorReviews = async (req, res) => {
     try {
       const { mentorId } = req.params;
@@ -74,8 +69,6 @@ const createRating = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-
-
   const getAllReviews = async (req,res) => {
     try {
       const ratings = await Review.find();
