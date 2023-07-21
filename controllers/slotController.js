@@ -6,7 +6,7 @@ const TimeRequest = require("../models/timeRequestSchema");
 
 const createSlots = async (req, res) => {
     try {
-        const { mentorID, userID, requestID ,slots } = req.body;
+        const { mentorID, userID, requestID, slots } = req.body;
 
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
@@ -30,7 +30,7 @@ const createSlots = async (req, res) => {
             userID: userID,
             mentorID: mentorID,
             slots: slots,
-            requestID:requestID
+            requestID: requestID
         });
 
         await newSlot.save();
@@ -43,13 +43,13 @@ const createSlots = async (req, res) => {
 
 const getSlotsByUserAndMentorId = async (req, res) => {
     try {
-        const { userID, mentorID , requestID } = req.params;
-        const slots = await Slot.find({ mentorID: mentorID, userID: userID ,requestID:requestID });
+        const { userID, mentorID, requestID } = req.params;
+        const slots = await Slot.find({ mentorID: mentorID, userID: userID, requestID: requestID });
 
         if (slots.length === 0) {
             return res.status(404).json({ error: 'No slots found for the given parameters' });
         }
-        
+
         res.status(200).json(slots);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -58,7 +58,7 @@ const getSlotsByUserAndMentorId = async (req, res) => {
 
 const confirmSlot = async (req, res) => {
     try {
-        const { userID, mentorID, slotID } = req.body;
+        const { userID, mentorID, slotID, requestID } = req.body;
 
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
@@ -67,7 +67,7 @@ const confirmSlot = async (req, res) => {
             return res.status(404).json({ error: 'Mentor or user not found' });
         }
 
-        const slot = await Slot.findOne({ mentorID: mentorID, userID: userID });
+        const slot = await Slot.findOne({ mentorID: mentorID, userID: userID, requestID: requestID });
         if (!slot) {
             return res.status(404).json({ error: 'Slot not found' });
         }
@@ -103,30 +103,30 @@ const confirmSlot = async (req, res) => {
 
 const areMentorSlotsAvailableForUser = async (req, res) => {
     try {
-      const { userID, mentorID ,requestID} = req.params;
-  
-      const mentorExists = await Mentor.findById(mentorID);
-      const userExists = await User.findById(userID);
-      const requestExits = await TimeRequest.findById(requestID);
-      
-  
-      if (!mentorExists || !userExists || !requestExits) {
-        return res.status(404).json({ error: 'Mentor or user not found' });
-      }
-  
-     
-      const slots = await Slot.find({ mentorID: mentorID, userID: userID , requestID:requestID});
-  
-      if (slots.length === 0) {
-        return res.status(200).json({ slotsAvailable: "false"});
-      }
-  
-      
-      res.status(200).json({ slotsAvailable: "true" });
+        const { userID, mentorID, requestID } = req.params;
+
+        const mentorExists = await Mentor.findById(mentorID);
+        const userExists = await User.findById(userID);
+        const requestExits = await TimeRequest.findById(requestID);
+
+
+        if (!mentorExists || !userExists || !requestExits) {
+            return res.status(404).json({ error: 'Mentor or user not found' });
+        }
+
+
+        const slots = await Slot.find({ mentorID: mentorID, userID: userID, requestID: requestID });
+
+        if (slots.length === 0) {
+            return res.status(200).json({ slotsAvailable: "false" });
+        }
+
+
+        res.status(200).json({ slotsAvailable: "true" });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
+};
 module.exports = {
     createSlots,
     getSlotsByUserAndMentorId,
