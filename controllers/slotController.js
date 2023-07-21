@@ -63,10 +63,7 @@ const confirmSlot = async (req, res) => {
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
 
-        if (!mentorExists || !userExists) {
-            return res.status(404).json({ error: 'Mentor or user not found' });
-        }
-
+        
         const slot = await Slot.findOne({ mentorID: mentorID, userID: userID, requestID: requestID });
         if (!slot) {
             return res.status(404).json({ error: 'Slot not found' });
