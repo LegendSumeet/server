@@ -95,7 +95,15 @@ const confirmSlot = async (req, res) => {
 };
 
 
-
+const confirmedSlottomentor = async(req,res) =>{
+    try{
+        const {requestID} = req.params;
+        const confirmedSlot = await cnfSlot.find({requestID:requestID});
+        res.status(200).json(confirmedSlot);
+    }catch(error){
+        res.status(500).json({error:error.message});
+    }
+}
 
 
 
@@ -129,6 +137,7 @@ module.exports = {
     createSlots,
     getSlotsByUserAndMentorId,
     confirmSlot,
-    areMentorSlotsAvailableForUser
+    areMentorSlotsAvailableForUser,
+    confirmedSlottomentor
 
 }
