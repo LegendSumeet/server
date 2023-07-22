@@ -82,6 +82,7 @@ const confirmSlot = async (req, res) => {
         const confirmedSlot = new ConfirmSlot({
             user: userID,
             mentor: mentorID,
+            requestID: requestID,
             slots: [slotToUpdate],
         });
 
