@@ -7,7 +7,7 @@ const messagecontroller = require("../controllers/messageController");
 router.post("/",verifyTokenAndAuthorization,messagecontroller.sendMessage);
 
 //get all messages
-router.get("/:id",verifyTokenAndAuthorization,messagecontroller.getAllMessages);
+router.get("/:id",verifyToken,messagecontroller.getAllMessages);
 
 
 
