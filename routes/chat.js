@@ -7,6 +7,7 @@ const chatcontroller = require("../controllers/chatcontroller");
 router.post("/",chatcontroller.createChat);
 
 //get all messages
+router.get("/:chatId",chatcontroller.getChat);
 
 
 
