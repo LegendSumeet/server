@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const { Router } = require("express");
-
+const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, verifyToken} = require("../middleware/verifyToken");
 const messagecontroller = require("../controllers/messageController");
 
 //send message
-router.post("/",messagecontroller.sendMessage);
+router.post("/",verifyTokenAndAuthorization,messagecontroller.sendMessage);
 
 //get all messages
-router.get("/:chatId",messagecontroller.getAllMessages);
+router.get("/:id",verifyTokenAndAuthorization,messagecontroller.getAllMessages);
 
-//router.get("/:id",)
+
 
 
 

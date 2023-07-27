@@ -1,13 +1,11 @@
 const router = require("express").Router();
-const { Router } = require("express");
-
+const { verifyTokenAndAuthorization ,verifyTokenAndAdmin,verifyTokenAndmentor, verifyToken} = require("../middleware/verifyToken");
 const chatcontroller = require("../controllers/chatcontroller");
 
-//send message
-router.post("/",chatcontroller.createChat);
+router.post("/",verifyTokenAndAuthorization,chatcontroller.createChat);
 
 //get all messages
-router.get("/:chatId",chatcontroller.getChat);
+router.get("/",verifyTokenAndAuthorization,chatcontroller.getChat);
 
 
 

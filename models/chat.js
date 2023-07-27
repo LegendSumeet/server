@@ -9,21 +9,22 @@ const chatSchema = new mongoose.Schema({
       type: Boolean,
       default: false,
     },
-    user:
+    users:[
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
       },
-      mentor:
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Mentor',
-      },
+    ],
     latestMessage: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Message',
     },
-  });
+    groupAdmin:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  },{timestamps:true}
+  );
 
 const Chat = mongoose.model('Chat', chatSchema);
 module.exports = Chat;
