@@ -20,7 +20,7 @@ module.exports = {
       if (!chat) {
         return res.status(404).json({ message: 'Chat not found' });
       }
-      res.status(200).json({ chat });
+      res.status(200).json( chat );
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while fetching the chat' });
     }
