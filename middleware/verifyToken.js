@@ -26,7 +26,7 @@ const verifyTokenAndAuthorization = async (req, res, next) => {
       next();
     }
     else {
-     next();
+      res.status(403).json("You are not allowed to do that");
     }
   });
 };
