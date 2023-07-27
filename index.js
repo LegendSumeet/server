@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.use(bodyParser);
+
 app.use('/api/', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/mentor', MentorRoutes);
