@@ -31,7 +31,7 @@ const createSlots = async (req, res) => {
             mentorID: mentorID,
             slots: slots,
             requestID: requestID,
-            email: userExists.email
+            email: mentorExists.email
         });
 
         await newSlot.save();
