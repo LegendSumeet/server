@@ -14,6 +14,10 @@ const SlotSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"TimeRequest"
     },
+    email:{
+        type:String,
+        required:true
+    },
     slots: [
         {
             date: { type: String, required: true },

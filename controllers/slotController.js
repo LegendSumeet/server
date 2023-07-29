@@ -30,7 +30,8 @@ const createSlots = async (req, res) => {
             userID: userID,
             mentorID: mentorID,
             slots: slots,
-            requestID: requestID
+            requestID: requestID,
+            email: userExists.email
         });
 
         await newSlot.save();

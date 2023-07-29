@@ -23,20 +23,24 @@ module.exports = {
       select: "firstname email"
     })
     if (isCHat.length > 0) {
-      return res.status(200).json(isCHat[0]);
+      return res.send(isCHat[0]);
     }
     else {
       var ChatData = {
         chatName: userID,
         isGroupChat: false,
         users: [
-          req.user.id, userID
+         
+          userID
         ],
-
+        
 
 
       };
     }
+    console.log('req.user:', req.user);
+console.log('req.user.id:', req.user.id);
+
 
     try {
       const createddchat = await Chat.create(ChatData);
