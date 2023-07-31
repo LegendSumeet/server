@@ -17,6 +17,12 @@ const timeRequestSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  seekeremail:{
+    type: String,
+  },
+  mentoremail:{
+    type: String,
+  },
   status: {
     type: String,
     enum: ['pending', 'accepted', 'rejected', 'inprogress','completed'],

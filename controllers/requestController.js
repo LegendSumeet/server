@@ -5,11 +5,13 @@ const TimeRequest = require('../models/timeRequestSchema');
 
 const createRequest = async (req, res) => {
   try {
-    const { timeInMinutes, mentorId, seekerId, price ,mode} = req.body;
+    const { timeInMinutes, mentorId, seekerId, price ,mode,mentoremail,seekeremail} = req.body;
 
     // Check if the mentor and seeker exist
     const mentor = await Mentor.findById(mentorId);
     const seeker = await User.findById(seekerId);
+
+
 
     if (!mentor || !seeker) {
       return res.status(404).json({ error: 'Mentor or seeker not found' });
@@ -22,6 +24,8 @@ const createRequest = async (req, res) => {
       seekerId,
       price,
       mode,
+      mentoremail:mentor.email,
+      seekeremail:seeker.email
     });
 
     // Save the request
