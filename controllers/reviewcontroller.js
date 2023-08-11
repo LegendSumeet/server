@@ -74,7 +74,7 @@ const createRating = async (req, res) => {
       console.log("hello");
       const ratings = await Review.find();
       console.log(ratings);
-      return ratings;
+      res.status(200).json(ratings); 
     } catch (error) {
       console.log(error);
       throw error;
