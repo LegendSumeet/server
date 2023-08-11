@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
 const MentorRoutes = require('./routes/mentor');
-const bodyParser = require('body-parser');
 dotenv.config();
 
 mongoose
@@ -19,8 +18,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/api/', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/mentor', MentorRoutes)

@@ -12,7 +12,8 @@ router.delete("/", verifyToken, userController.deleteUser);
 router.get("/:id", verifyToken,userController.getUser);
 //time request
 router.get('/:seekerId/time-requests',getTimeRequestsByUser );
-router.get('/getallreviewsmetnor', getAllReviews);
+
+
 
 
 

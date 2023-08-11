@@ -69,13 +69,15 @@ const createRating = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-  const getAllReviews = async (req,res) => {
+  const getAllReviews = async () => {
     try {
+      console.log("hello");
       const ratings = await Review.find();
-      res.status(200).json(ratings);
+      console.log(ratings);
+      return ratings;
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      throw error;
     }
   };
   
@@ -86,7 +88,6 @@ module.exports = {
     createRating,
     getMentorReviews,
     getAllReviews,
-
 };
 
 
