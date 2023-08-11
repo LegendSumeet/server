@@ -69,7 +69,7 @@ const createRating = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-  const getAllReviews = async () => {
+  const getAllReviews = async (req,res) => {
     try {
       console.log("hello");
       const ratings = await Review.find();
