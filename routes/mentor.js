@@ -10,6 +10,7 @@ const slotscontroller = require("../controllers/slotController");
 
 //auth
 router.post("/login", mentorlogin);
+router.get("/profile",verifyToken,mentorcontroller.getMentorProfile)
 
 //mentor
 router.post("/creatementor", mentorcontroller.registerMentor);

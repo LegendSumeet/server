@@ -145,11 +145,23 @@ const getMentorsByCategory = async (req, res) => {
   }
 };
 
+const getMentorProfile = async (req, res) => {
+  try {
+    const Mentor = await Mentor.findById(req.params.id);
+    const {  __v, createdAt, ...others } = Mentor._doc;
+    res.status(200).json(others);
+
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   registerMentor,
   getmentor,
   getAllMentors,
   updateMentor,
   createReview,
-  getMentorsByCategory
+  getMentorsByCategory,
+  getMentorProfile
 };
