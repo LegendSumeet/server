@@ -85,10 +85,10 @@ async function mentorlogin(req, res) {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
-   
+    const token = jwt.sign({ userId: User._id }, process.env.SECRET_KEY,);
     const { password: hashedPassword, ...others } = mentor._doc;
 
-    res.status(200).json({ ...others });
+    res.status(200).json({ token, ...others });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred'  });
