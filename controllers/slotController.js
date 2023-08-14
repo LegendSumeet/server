@@ -110,7 +110,7 @@ const confirmedSlottomentor = async (req, res) => {
 const confirmedSlottoUser = async (req, res) => {
     try {
         const { requestIDs } = req.params;
-        const confirmedSlot = await cnfSlot.find({ requestID: requestIDs });
+        const confirmedSlot = await cnfSlot.findOne({ requestID: requestIDs });
         if (confirmedSlot != null) {
             res.status(200).json({ "avail": true });
         }
