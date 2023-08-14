@@ -54,7 +54,7 @@ module.exports = {
    MentorOrUser : async (req, res) => {
     try {
         const { userID } = req.params;
-        const mentorExists = await Mentor.findById(userID);
+        const mentorExists = await Mentor.find(userID);
 
         if (mentorExists) {
             res.status(200).json({ isMentor: true });
