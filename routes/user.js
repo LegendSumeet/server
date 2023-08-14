@@ -9,7 +9,7 @@ const { getTimeRequestsByUser } = require("../controllers/requestController");
 //auth
 router.put("/", verifyToken, userController.updateUser);
 router.delete("/", verifyToken, userController.deleteUser);
-router.get("/:id", verifyToken,userController.getUser);
+router.get("/:id",userController.getUser);
 //time request
 router.get('/:seekerId/time-requests',getTimeRequestsByUser );
 
