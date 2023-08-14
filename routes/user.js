@@ -13,6 +13,9 @@ router.get("/:id",userController.getUser);
 //time request
 router.get('/:seekerId/time-requests',getTimeRequestsByUser );
 
+//check
+router.get('/check/:userID',userController.MentorOrUser );
+
 
 
 
