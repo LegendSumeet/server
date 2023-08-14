@@ -57,9 +57,9 @@ module.exports = {
         const mentorExists = await Mentor.findById(userID);
 
         if (mentorExists) {
-            res.status(200).json({ isMentor: "true" });
+            res.status(200).json({ isMentor: true });
         } else {
-            res.status(200).json({ isMentor: "false" });
+            res.status(200).json({ isMentor: false });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
