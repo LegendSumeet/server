@@ -4,7 +4,7 @@ const { createRating,getMentorReviews , getAllReviews  } = require('../controlle
 const userController = require("../controllers/userController");
 const { verifyTokenAndAuthorization ,verifyTokenAndAdmin, verifyToken} = require("../middleware/verifyToken");
 const { getTimeRequestsByUser } = require("../controllers/requestController");
-
+const slotscontroller = require("../controllers/slotController")
 
 //auth
 router.put("/", verifyToken, userController.updateUser);
@@ -14,7 +14,8 @@ router.get("/:id",userController.getUser);
 router.get('/:seekerId/time-requests',getTimeRequestsByUser );
 
 //check
-router.get('/check/:userId',userController.MentorOrUser );
+router.get('/check/:userId',userController.MentorOrUser);
+router.get('/cnflsots/:requestID',slotscontroller.confirmedSlottoUser)
 
 
 

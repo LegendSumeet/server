@@ -107,6 +107,17 @@ const confirmedSlottomentor = async(req,res) =>{
 }
 
 
+const confirmedSlottoUser = async(req,res) =>{
+    try{
+        const {requestID} = req.params;
+        const confirmedSlot = await cnfSlot.find({requestID:requestID});
+        res.status(200).json({"avail":true});
+    }catch(error){
+        res.status(500).json({"avail":false});
+    }
+}
+
+
 
 const areMentorSlotsAvailableForUser = async (req, res) => {
     try {
@@ -139,6 +150,7 @@ module.exports = {
     getSlotsByUserAndMentorId,
     confirmSlot,
     areMentorSlotsAvailableForUser,
-    confirmedSlottomentor
+    confirmedSlottomentor,
+    confirmedSlottoUser
 
 }
