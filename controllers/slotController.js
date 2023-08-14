@@ -64,7 +64,7 @@ const confirmSlot = async (req, res) => {
         const mentorExists = await Mentor.findById(mentorID);
         const userExists = await User.findById(userID);
 
-        
+
         const slot = await Slot.findOne({ mentorID: mentorID, userID: userID, requestID: requestID });
         if (!slot) {
             return res.status(404).json({ error: 'Slot not found' });
@@ -96,24 +96,28 @@ const confirmSlot = async (req, res) => {
 };
 
 
-const confirmedSlottomentor = async(req,res) =>{
-    try{
-        const {requestID} = req.params;
-        const confirmedSlot = await cnfSlot.find({requestID:requestID});
+const confirmedSlottomentor = async (req, res) => {
+    try {
+        const { requestID } = req.params;
+        const confirmedSlot = await cnfSlot.find({ requestID: requestID });
         res.status(200).json(confirmedSlot);
-    }catch(error){
-        res.status(500).json({error:error.message});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 }
 
 
-const confirmedSlottoUser = async(req,res) =>{
-    try{
-        const {requestID} = req.params;
-        const confirmedSlot = await cnfSlot.find({requestID:requestID});
-        res.status(200).json({"avail":true});
-    }catch(error){
-        res.status(500).json({"avail":false});
+const confirmedSlottoUser = async (req, res) => {
+    try {
+        const { requestID } = req.params;
+        const confirmedSlot = await cnfSlot.find({ requestID: requestID });
+        if (confirmedSlot != null) {
+            res.status(200).json({ "avail": true });
+        }
+        res.status(200).json({ "avail": false });
+
+    } catch (error) {
+        res.status(500).json("error");
     }
 }
 
