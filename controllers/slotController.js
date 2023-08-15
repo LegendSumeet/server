@@ -75,22 +75,22 @@ const SessionDone = async (req, res) => {
 const SessionFound = async (req, res) => {
     try {
         const { userID } = req.params;
-        
+
         try {
-            const userRequests = await TimeRequest.find({ user_id: userID });
-            
+            const userRequests = await TimeRequest.find({ seekerId: userID });
+
             if (userRequests.length === 0) {
-                
+
                 return res.status(200).json({ isAllSessionDone: false });
             }
-            
+
             for (const request of userRequests) {
                 if (request.status !== 'SessionDone') {
                     return res.status(200).json({ isAllSessionDone: false });
                 }
             }
-            
-           
+
+
             return res.status(200).json({ isAllSessionDone: true });
         } catch (error) {
             console.error(error.message);
