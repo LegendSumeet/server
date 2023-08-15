@@ -41,7 +41,8 @@ router.post('/createslots', slotscontroller.createSlots);
 router.get('/slots/:userID/:mentorID/:requestID', slotscontroller.getSlotsByUserAndMentorId);
 router.post('/slots/confirm', slotscontroller.confirmSlot);
 router.get('/slots/available/:userID/:mentorID/:requestID', slotscontroller.areMentorSlotsAvailableForUser);
-router.get('/slots/userconfirmed/:requestID',slotscontroller.confirmedSlottomentor)
+router.get('/slots/userconfirmed/:requestID',slotscontroller.confirmedSlottomentor);
+router.get('/slots/session/:requestID',slotscontroller.SessionDone);
 
 
 module.exports = router;

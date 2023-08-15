@@ -57,6 +57,21 @@ const getSlotsByUserAndMentorId = async (req, res) => {
     }
 };
 
+
+
+const SessionDone = async (req, res) => {
+    try {
+        const { requestID } = req.params;
+        await TimeRequest.updateOne(
+            { _id: requestID },
+            { $set: { status: 'SessionDone' } }
+          );
+        res.status(200).json("Done:DONE");
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const confirmSlot = async (req, res) => {
     try {
         const { userID, mentorID, slotID, requestID } = req.body;
@@ -77,7 +92,7 @@ const confirmSlot = async (req, res) => {
 
         slotToUpdate.isConfirmed = true;
 
-        
+
 
         await slot.save();
 
@@ -162,6 +177,7 @@ module.exports = {
     confirmSlot,
     areMentorSlotsAvailableForUser,
     confirmedSlottomentor,
-    confirmedSlottoUser
+    confirmedSlottoUser,
+    SessionDone
 
 }

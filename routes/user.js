@@ -15,7 +15,7 @@ router.get('/:seekerId/time-requests', getTimeRequestsByUser);
 
 //check
 router.get('/check/:userId', userController.MentorOrUser);
-router.get('/cnflsots/:requestID', slotscontroller.confirmedSlottoUser)
+router.get('/cnflsots/:requestID', slotscontroller.confirmedSlottoUser);
 
 
 
