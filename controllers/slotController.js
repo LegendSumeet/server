@@ -80,7 +80,6 @@ const SessionFound = async (req, res) => {
             const userRequests = await TimeRequest.find({ seekerId: userID });
 
             if (userRequests.length === 0) {
-
                 return res.status(200).json({ isAllSessionDone: false });
             }
 
@@ -89,7 +88,6 @@ const SessionFound = async (req, res) => {
                     return res.status(200).json({ isAllSessionDone: false });
                 }
             }
-
 
             return res.status(200).json({ isAllSessionDone: true });
         } catch (error) {
@@ -101,6 +99,7 @@ const SessionFound = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+
 
 
 const confirmSlot = async (req, res) => {
