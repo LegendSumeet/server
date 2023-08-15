@@ -72,6 +72,37 @@ const SessionDone = async (req, res) => {
     }
 };
 
+const SessionFound = async (req, res) => {
+    try {
+        const { userID } = req.params;
+        
+        try {
+            const userRequests = await TimeRequest.find({ user_id: userID });
+            
+            if (userRequests.length === 0) {
+                
+                return res.status(200).json({ isAllSessionDone: false });
+            }
+            
+            for (const request of userRequests) {
+                if (request.status !== 'SessionDone') {
+                    return res.status(200).json({ isAllSessionDone: false });
+                }
+            }
+            
+           
+            return res.status(200).json({ isAllSessionDone: true });
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).json({ error: error.message });
+        }
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({ error: error.message });
+    }
+};
+
+
 const confirmSlot = async (req, res) => {
     try {
         const { userID, mentorID, slotID, requestID } = req.body;
@@ -178,6 +209,7 @@ module.exports = {
     areMentorSlotsAvailableForUser,
     confirmedSlottomentor,
     confirmedSlottoUser,
-    SessionDone
+    SessionDone,
+    SessionFound
 
 }
