@@ -83,13 +83,9 @@ const SessionFound = async (req, res) => {
                 return res.status(200).json({ isAllSessionDone: false });
             }
 
-            for (const request of userRequests) {
-                if (request.status !== 'SessionDone') {
-                    return res.status(200).json({ isAllSessionDone: false });
-                }
-            }
+            const isAnySessionDone = userRequests.some(request => request.status === 'SessionDone');
 
-            return res.status(200).json({ isAllSessionDone: true });
+            return res.status(200).json({ isAllSessionDone: isAnySessionDone });
         } catch (error) {
             console.error(error.message);
             return res.status(500).json({ error: error.message });
@@ -99,6 +95,7 @@ const SessionFound = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+
 
 
 
