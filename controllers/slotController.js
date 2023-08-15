@@ -65,7 +65,7 @@ const SessionDone = async (req, res) => {
         await TimeRequest.updateOne(
             { _id: requestID },
             { $set: { status: 'SessionDone' } }
-          );
+        );
         res.status(200).json("Done:DONE");
     } catch (error) {
         res.status(500).json({ error: error.message });
