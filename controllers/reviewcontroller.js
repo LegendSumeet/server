@@ -4,9 +4,11 @@ const { Mentor } = require('../models/Mentor');
 
 const User = require('../models/User');
 
+const TimeRequest = require("../models/timeRequestSchema");
+
 const createRating = async (req, res) => {
   try {
-    const { userId, mentorId, rating, review } = req.body;
+    const { userId, mentorId, rating, review, reqId } = req.body;
 
     const mentorExists = await Mentor.findById(mentorId);
     const userExists = await User.findById(userId);
@@ -47,44 +49,50 @@ const createRating = async (req, res) => {
     mentor.avgrating = avgRating;
     await mentor.save();
 
+    await TimeRequest.updateOne(
+      { _id: reqId },
+      { $set: { status: 'completed' } }
+    );
+    
+
     res.status(201).json(newRating);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-  const getMentorReviews = async (req, res) => {
-    try {
-      const { mentorId } = req.params;
-    
-      const mentor = await Mentor.findById(mentorId);
-    
-      if (!mentor) {
-        return res.status(404).json({ error: 'Mentor not found' });
-      }
-    
-      const ratings = await Review.find({ mentorId });
-    
-      res.status(200).json(ratings); 
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+const getMentorReviews = async (req, res) => {
+  try {
+    const { mentorId } = req.params;
+
+    const mentor = await Mentor.findById(mentorId);
+
+    if (!mentor) {
+      return res.status(404).json({ error: 'Mentor not found' });
     }
-  };
-  const getAllReviews = async (req,res) => {
-    try {
-      const ratings = await Review.find();
-      res.status(200).json(ratings); 
-    } catch (error) {
-      throw error;
-    }
-  };
-  
-  
-  
-  
+
+    const ratings = await Review.find({ mentorId });
+
+    res.status(200).json(ratings);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+const getAllReviews = async (req, res) => {
+  try {
+    const ratings = await Review.find();
+    res.status(200).json(ratings);
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
 module.exports = {
-    createRating,
-    getMentorReviews,
-    getAllReviews,
+  createRating,
+  getMentorReviews,
+  getAllReviews,
 };
 
 
