@@ -17,11 +17,6 @@ const createRating = async (req, res) => {
       return res.status(404).json({ error: 'Mentor or user not found' });
     }
 
-    const existingRating = await Review.findOne({ userId, mentorId });
-    if (existingRating) {
-      return res.status(400).json({ error: 'User has already reviewed this mentor' });
-    }
-
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -53,7 +48,7 @@ const createRating = async (req, res) => {
       { _id: reqId },
       { $set: { status: 'completed' } }
     );
-    
+
 
     res.status(201).json(newRating);
   } catch (error) {
