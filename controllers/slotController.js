@@ -77,6 +77,8 @@ const confirmSlot = async (req, res) => {
 
         slotToUpdate.isConfirmed = true;
 
+        
+
         await slot.save();
 
         const ConfirmSlot = cnfSlot;
@@ -88,6 +90,11 @@ const confirmSlot = async (req, res) => {
         });
 
         await confirmedSlot.save();
+
+        await TimeRequest.updateOne(
+            { _id: requestID },
+            { $set: { confirmslotavail: true } }
+        );
 
         res.status(200).json(confirmedSlot);
     } catch (error) {

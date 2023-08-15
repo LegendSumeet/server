@@ -12,6 +12,10 @@ const timeRequestSchema = new mongoose.Schema({
     ref: 'Mentor',
     required: true
   },
+  confirmslotavail:{
+    type: Boolean,
+    default: false
+  },
   seekerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
